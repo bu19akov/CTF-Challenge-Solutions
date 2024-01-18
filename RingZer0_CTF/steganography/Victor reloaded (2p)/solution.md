@@ -42,7 +42,7 @@ So for that we will use [CyberChef](https://cyberchef.io) *(a web app for encryp
 
 ## Final Flag
 
-`flagarenice `
+`flagarenice`
 
 *Created by [bu19akov](https://github.com/bu19akov)*
 
