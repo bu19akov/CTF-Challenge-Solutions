@@ -1,4 +1,5 @@
 from PIL import Image
+import glob
 
 # Constants defining the dimensions and positions for decoding
 COLUMN_WIDTH = 52
@@ -73,6 +74,20 @@ def decode_card(image_path):
 
     return "".join(decoded_text)
 
+def decode_all_cards(directory_path):
+    """Decodes all .jpg files in the specified directory."""
+    file_paths = glob.glob(directory_path)
+    decoded_texts = {}
+
+    for file_path in file_paths:
+        decoded_text = decode_card(file_path)
+        decoded_texts[file_path] = decoded_text
+
+    return decoded_texts
+
 # Usage
-decoded_data = decode_card("file.jpg")
-print(decoded_data)
+decoded_data = decode_all_cards("punchcard/*.jpg")
+
+for file_name, data in decoded_data.items():
+    #print(f"Decoded data from {file_name}:")
+    print(data)
