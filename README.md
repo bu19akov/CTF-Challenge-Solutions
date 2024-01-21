@@ -1,3 +1,5 @@
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/bu19akov)
+
 # CTF-Challenge-Solutions 🚩
 
 Welcome to **CTF-Challenge-Solutions**, where you'll find easy-to-understand guides and solutions for a variety of Capture The Flag (CTF) challenges. This repository is perfect for anyone passionate about diving into the world of cybersecurity and learning through real-world puzzles and tasks.
