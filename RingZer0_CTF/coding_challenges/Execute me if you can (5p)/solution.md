@@ -21,34 +21,34 @@ Firstly, we need to undertsnad what shellcode is doing. For that we can use [Onl
 0:  eb 4d                   jmp    0x4f
 2:  5e                      pop    rsi
 3:  66 83 ec 0c             sub    sp,0xc // adjusts the stack pointer `rsp` by subtracting `12 (0xc)`
- 											 bytes. This operation sets up `rsp` to point to a specific 
- 											 location on the stack relative to our string.
+ 					     bytes. This operation sets up `rsp` to point to a specific
+					     location on the stack relative to our string.
 7:  48 89 e0                mov    rax,rsp // moves the stack pointer into `rax`. 
-											 `rax` will be used to store the decoded string.
+					      `rax` will be used to store the decoded string.
 a:  48 31 c9                xor    rcx,rcx // clears the `rcx` register, setting it to zero. 
-											  This will be used as a counter.
+					      This will be used as a counter.
 d:  68 30 c4 58 cb          push   0xffffffffcb58c430 // pushes some data onto the stack. This data 
-														 doesn't seem to be directly relevant 
-														 to the decoding.
+							 doesn't seem to be directly relevant 
+							 to the decoding.
 12: 48 89 cf                mov    rdi,rcx
 15: 80 c1 0c                add    cl,0xc // `mov rdi, rcx` and `add cl, 0xc` set up 
-											 `rcx` with a value of 12, which will be used as a loop 
-											 counter. The loop iterates 12 times, decoding one byte 
-											 of the string per iteration.		 
+					     `rcx` with a value of 12, which will be used as a loop 
+					      counter. The loop iterates 12 times, decoding one byte 
+					      of the string per iteration.		 
 18: 40 8a 3e                mov    dil,BYTE PTR [rsi] // moves a byte from the address pointed by 
-														`rsi` (our string) into the lower part of `rdi`.
+						         `rsi` (our string) into the lower part of `rdi`.
 1b: 40 f6 d7                not    dil // performs a bitwise NOT operation on the byte in `dil`,
-										  effectively flipping all its bits.
+					  effectively flipping all its bits.
 1e: 40 88 38                mov    BYTE PTR [rax],dil // moves the negated byte into the location pointed 
-														 by `rax`, effectively storing the decoded byte
-														 in our stack-based string buffer.
+							 by `rax`, effectively storing the decoded byte
+							 in our stack-based string buffer.
 21: 48 ff c6                inc    rsi
 24: 68 82 cd 24 4d          push   0x4d24cd82
 29: 48 ff c0                inc    rax // `inc rsi` and `inc rax` increment the `rsi` and `rax` 
-										   pointers for the next byte.
+					   pointers for the next byte.
 2c: e2 ea                   loop   0x18 // decrements `rcx` and loops back if `rcx` is not zero.
 2e: 2c 0c                   sub    al,0xc // adjusts `rax` by subtracting 12, thus pointing it to the 
-											 start of the decoded string.
+					     start of the decoded string.
 30: 48 89 c6                mov    rsi,rax
 33: 68 21 fb 67 1b          push   0x1b67fb21
 38: 48 31 c0                xor    rax,rax
@@ -56,14 +56,14 @@ d:  68 30 c4 58 cb          push   0xffffffffcb58c430 // pushes some data onto t
 3e: 04 01                   add    al,0x1
 40: 48 89 c2                mov    rdx,rax
 43: 80 c2 0b                add    dl,0xb // The system call is prepared with `xor rax,rax` 
-											 (clearing `rax`), `mov rdi, rax` (moving `rax` to `rdi`, 
-											 which ends up being zero), and setting up `rax` and `rdx` 
-											 for the syscall.
+					     (clearing `rax`), `mov rdi, rax` (moving `rax` to `rdi`, 
+					     which ends up being zero), and setting up `rax` and `rdx` 
+					     for the syscall.
 46: 0f 05                   syscall // The `syscall` is `sys_write`, but with `rdi` as 0, 
-									   it writes to `stdin` instead of `stdout`.
+				       it writes to `stdin` instead of `stdout`.
 48: 48 31 c0                xor    rax,rax 
 4b: 04 3c                   add    al,0x3c // clears `rax`, and `add al, 0x3c` sets rax to 60, 
-											  which is the system call number for `exit`.
+					      which is the system call number for `exit`.
 4d: 0f 05                   syscall // performs the `exit` system call.
 4f: e8 ae ff ff ff          call   0x2
 54: bd c6 b5 93 90          mov    ebp,0x9093b5c6
