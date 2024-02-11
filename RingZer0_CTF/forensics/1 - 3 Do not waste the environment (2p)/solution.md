@@ -31,7 +31,7 @@ C:\Windows\system32\advapi32.dll[MofResourceName]
 Now, when the OS (`Microsoft Windows`) was identified, we need to get more information about it. We will use [volatility](https://github.com/volatilityfoundation/volatility) *(memory extraction utility framework)* to extract environment variables:
 
 ```sh
-vol -f 5bd2510a83e82d271b7bf7fa4e0970d1 windows.envars.Envars
+$ vol -f 5bd2510a83e82d271b7bf7fa4e0970d1 windows.envars.Envars
 Volatility 3 Framework 2.5.0
 Progress:  100.00		PDB scanning finished                        
 PID	Process	Block	Variable	Value
