@@ -240,7 +240,7 @@ dd6e058e814260bc70e9bbdef2715849
 ```
 
 
-## Final Flag
+## Final Flags
 
 > `user`: ec9b13ca4d6229cd5cc1e09980965bf7
 > `root`: dd6e058e814260bc70e9bbdef2715849
