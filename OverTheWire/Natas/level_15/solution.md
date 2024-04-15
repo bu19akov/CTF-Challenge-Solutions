@@ -54,7 +54,7 @@ if(array_key_exists("username", $_REQUEST)) {
 ...
 ```
 
-We know, that we have table `users` with fields `username` and `password` and the query is `SELECT * from users where username="..."`, so as we will not have any output except about the user existance it will be `Blind SQL Injection`. What we can do is to build the more complex query, like: `SELECT * from users where username="natas16" and password like binary "%"#`, let's analyze it. It will select all users with username `natas16`, that have password like `"%"` *(it means any characters)* and the word `binary` means here, that it will not be case-insensitive:
+We know, that we have table `users` with fields `username` and `password` and the query is `SELECT * from users where username="..."`, so as we will not have any output except about the user existance it will be `Blind SQL Injection`. What we can do is to build the more complex query, like: `SELECT * from users where username="natas16" and password like binary "%"#`, let's analyze it. It will select all users with username `natas16`, that have password like `"%"` *(it means any characters)* and the word `binary` means here, that it will not be case-insensitive. So instead of `%` we can input any characters and so check if the user exists. For example if user has password `123` and we send `...like binary "1%"` it will return true, because password starts with `1` and then have any characters. So let's send `natas16" and password like binary "%"#` to check it:
 
 ![check](./check.jpg)
 
