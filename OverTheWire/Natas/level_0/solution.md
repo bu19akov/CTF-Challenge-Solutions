@@ -3,7 +3,7 @@
 ## Challenge Details 
 
 - **CTF:** OverTheWire
-- **Category:** Web
+- **Category:** Natas
 
 ## Provided Materials
 
