@@ -9,7 +9,7 @@ def send_2_get_requests():
     # Cookies dictionary
     cookies = dict()
 
-    # Our parameters (with name set to whatever and debug)
+    # Our parameters (with name and debug set to whatever)
     params = dict(submit="1", debug="1", admin=1)
     
     headers = {
